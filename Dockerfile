@@ -11,7 +11,7 @@ COPY target/java-backend.jar /app/java-backend.jar
 COPY angular-frontend/dist /app/angular-frontend/dist
 
 # Expose port 8080 (same port for both backend and frontend)
-EXPOSE 8080
+EXPOSE 8082
 
 # Run the Java application (backend)
 CMD ["java", "-jar", "java-backend.jar"]
