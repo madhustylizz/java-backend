@@ -1,7 +1,10 @@
-# Dockerfile for Spring Boot Backend
-FROM openjdk:17-jdk-slim
+# Replace if no ./mvnw in the project
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-RUN ./mvnw clean package -DskipTests
-EXPOSE 8080
-CMD ["java", "-jar", "target/*.jar"]
+RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8082
+ENTRYPOINT ["java", "-jar", "app.jar"]
