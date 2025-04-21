@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/madhustylizz/java-backend.git'
+                git branch: 'main', url: 'https://github.com/madhustylizz/java-backend'
             }
         }
         stage('Build Docker Image') {
